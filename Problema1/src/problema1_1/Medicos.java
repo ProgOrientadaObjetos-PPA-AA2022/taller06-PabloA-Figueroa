@@ -14,10 +14,10 @@ public class Medicos {
     String especialidad;
     double sueldo;
 
-    Medicos() {
-        nombreD = "Pablito";
-        especialidad = "Cirujano";
-        sueldo = 12031;
+    public Medicos(String n, String e, double s) {
+        nombreD = n;
+        especialidad = e;
+        sueldo = s;
     }
 
     public void establecerNombreDoctor(String n) {

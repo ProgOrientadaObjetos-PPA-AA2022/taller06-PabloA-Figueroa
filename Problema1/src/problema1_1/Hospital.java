@@ -9,74 +9,116 @@ package problema1_1;
  * @author SALA I
  */
 public class Hospital {
-    private String nombre; 
-    private Ciudad ciudad; 
-    private int especialistas; 
-    private Medicos[] doctores; 
-    private Enfermeros[] enfermeros; 
-    private double total; 
-    private String direccion; 
-    
-    public Hospital(String n, int e) {
-        nombre = " "; 
-        especialistas = 0; 
-        direccion = "24 de Mayo"; 
-        
+
+    private String nombre;
+    private Ciudad ciudad;
+    private int especialistas;
+    private Medicos[] doctores;
+    private Enfermeros[] enfermeros;
+    private double total;
+    private String direccion;
+
+    public Hospital(String n, int e, Medicos[] l1, Enfermeros[] l2) {
+        nombre = n;
+        especialistas = e;
+        doctores = l1;
+        enfermeros = l2;
+
     }
-    public void establecerNombre(String n){
+
+    public void establecerNombre(String n) {
         nombre = n;
     }
-    public void establecerCiudad(Ciudad n){
+
+    public void establecerCiudad(Ciudad n) {
         ciudad = n;
     }
-    public void establecerEspecialista(int n){
+
+    public void establecerEspecialista(int n) {
         especialistas = n;
     }
-    public void establecerDoctores(Medicos[] n){
+
+    public void establecerDoctores(Medicos[] n) {
         doctores = n;
     }
-    public void CalcularTotal(Medicos[] m, Enfermeros[] e){
+
+    public void CalcularTotal() {
         total = 0;
-        double suma = 0; 
+        double suma = 0;
         for (int i = 0; i < obtenerDocotores().length; i++) {
-              suma = suma + obtenerDocotores()[i].obtenerSueldo();
+            suma = suma + obtenerDocotores()[i].obtenerSueldo() + obtenerEnfermeros()[i].obtenerSueldo();
         }
-        
-        total = suma/obtenerDocotores().length;
+
+        total = suma;
     }
-    public void establecerEnfermeros(Enfermeros[] n){
+
+    public void establecerEnfermeros(Enfermeros[] n) {
         enfermeros = n;
     }
-    public void establecerDireccion(String n){
+
+    public void establecerDireccion(String n) {
         direccion = n;
     }
-    
-     public String obtenerNombre(){
+
+    public String obtenerNombre() {
         return nombre;
     }
-    
-    public Ciudad obtenerCiudad(){
+
+    public Ciudad obtenerCiudad() {
         return ciudad;
     }
-    
-    public int obtenerEspecialista(){
+
+    public int obtenerEspecialista() {
         return especialistas;
     }
-     public Medicos[] obtenerDocotores(){
+
+    public Medicos[] obtenerDocotores() {
         return doctores;
     }
-    
-    public double obtenerTotal(){
+
+    public double obtenerTotal() {
         return total;
     }
-    public Medicos[] obtenerEnfermeros(){
-        return doctores;
+
+    public Enfermeros[] obtenerEnfermeros() {
+        return enfermeros;
     }
-    
-    public String obtenerDireccion(){
+
+    public String obtenerDireccion() {
         return direccion;
     }
-    
 
-    
+    @Override
+    public String toString() {
+        String cadena = "Hospital" + obtenerNombre() + "\n";
+        cadena = String.format("""
+                               %sDireccion: %s
+                               Ciudad: %s
+                               Provincia: %s
+                               Numero de Especialistas %d
+                               """, cadena,
+                obtenerDireccion(), obtenerCiudad().obtenerNombreC(),
+                obtenerCiudad().obtenerProvincia(), obtenerEspecialista());
+        
+        cadena = String.format("%s\nLista de Medicos: \n", cadena);
+
+        for (int i = 0; i < obtenerDocotores().length; i++) {
+            cadena = String.format("%s -%s - Sueldo: %.2f - %s\n", cadena,
+                    obtenerDocotores()[i].obtenerNombreD(),
+                    obtenerDocotores()[i].obtenerSueldo(),
+                    obtenerDocotores()[i].obtenerEspecialidad());
+        }
+        cadena = String.format("%s\nLista de Enfermeros: \n", cadena);
+        
+        for (int i = 0; i < obtenerEnfermeros().length; i++) {
+            cadena = String.format("%s -%s - Sueldo: %.2f - %s\n", cadena,
+                    obtenerEnfermeros()[i].obtenerNombreEnfermero(),
+                    obtenerEnfermeros()[i].obtenerSueldo(),
+                    obtenerEnfermeros()[i].obtenerTipo());
+        }
+        cadena = String.format("%s\nTotal de Sueldos a pagar por mes: %.2f\n",
+                cadena, obtenerTotal());
+        return cadena;
+    }
+
 }

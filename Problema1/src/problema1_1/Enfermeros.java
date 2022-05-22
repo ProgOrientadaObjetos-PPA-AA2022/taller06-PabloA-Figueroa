@@ -13,10 +13,10 @@ public class Enfermeros {
     String tipo; 
     double sueldo; 
     
-    Enfermeros(){
-        nombreE = "Pedrito"; 
-        tipo = "contratado"; 
-        sueldo = 112; 
+    public Enfermeros(String n, String t, double s){
+        nombreE = n; 
+        tipo = t; 
+        sueldo = s; 
         
     }
     public void establecerNombreEnfermero(String n) {
@@ -35,7 +35,7 @@ public class Enfermeros {
         return nombreE;
     }
 
-    public String obtenerEspecialidad() {
+    public String obtenerTipo() {
         return tipo;
     }
 

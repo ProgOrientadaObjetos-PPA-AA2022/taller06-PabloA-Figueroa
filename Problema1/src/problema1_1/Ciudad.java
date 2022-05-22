@@ -10,15 +10,15 @@ package problema1_1;
  */
 public class Ciudad {
 
-    String nombre;
-    String provincia;
+    private String nombre;
+    private String provincia;
 
-    Ciudad() {
-        nombre = "Loja";
-        provincia = "Zamora";
+    public Ciudad(String n, String p) {
+        nombre = n;
+        provincia = p;
     }
 
-    public void establecerNombre(String n) {
+    public void establecerNombreC(String n) {
         nombre = n;
     }
 
@@ -26,7 +26,7 @@ public class Ciudad {
         provincia = n;
     }
 
-    public String obtenerNombre() {
+    public String obtenerNombreC() {
         return nombre;
     }
 
