@@ -18,11 +18,12 @@ public class Hospital {
     private double total;
     private String direccion;
 
-    public Hospital(String n, int e, Medicos[] l1, Enfermeros[] l2) {
+    public Hospital(String n, int e, Medicos[] l1, Enfermeros[] l2, String dir) {
         nombre = n;
         especialistas = e;
         doctores = l1;
         enfermeros = l2;
+        direccion = dir;
 
     }
 
@@ -46,7 +47,10 @@ public class Hospital {
         total = 0;
         double suma = 0;
         for (int i = 0; i < obtenerDocotores().length; i++) {
-            suma = suma + obtenerDocotores()[i].obtenerSueldo() + obtenerEnfermeros()[i].obtenerSueldo();
+            suma = suma + obtenerDocotores()[i].obtenerSueldo();
+        }
+        for (int i = 0; i < obtenerEnfermeros().length; i++) {
+            suma = suma + obtenerEnfermeros()[i].obtenerSueldo();
         }
 
         total = suma;
@@ -90,7 +94,7 @@ public class Hospital {
 
     @Override
     public String toString() {
-        String cadena = "Hospital" + obtenerNombre() + "\n";
+        String cadena = "\nHospital: " + obtenerNombre() + "\n";
         cadena = String.format("""
                                %sDireccion: %s
                                Ciudad: %s
@@ -99,8 +103,8 @@ public class Hospital {
                                """, cadena,
                 obtenerDireccion(), obtenerCiudad().obtenerNombreC(),
                 obtenerCiudad().obtenerProvincia(), obtenerEspecialista());
-        
-        cadena = String.format("%s\nLista de Medicos: \n", cadena);
+
+        cadena = String.format("%s\nLista de Medicos (as): \n", cadena);
 
         for (int i = 0; i < obtenerDocotores().length; i++) {
             cadena = String.format("%s -%s - Sueldo: %.2f - %s\n", cadena,
@@ -108,8 +112,8 @@ public class Hospital {
                     obtenerDocotores()[i].obtenerSueldo(),
                     obtenerDocotores()[i].obtenerEspecialidad());
         }
-        cadena = String.format("%s\nLista de Enfermeros: \n", cadena);
-        
+        cadena = String.format("%s\nLista de Enfermeros (as): \n", cadena);
+
         for (int i = 0; i < obtenerEnfermeros().length; i++) {
             cadena = String.format("%s -%s - Sueldo: %.2f - %s\n", cadena,
                     obtenerEnfermeros()[i].obtenerNombreEnfermero(),
@@ -120,5 +124,4 @@ public class Hospital {
                 cadena, obtenerTotal());
         return cadena;
     }
-
 }

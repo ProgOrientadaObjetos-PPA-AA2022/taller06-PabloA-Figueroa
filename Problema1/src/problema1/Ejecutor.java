@@ -4,6 +4,7 @@
  */
 package problema1;
 
+import java.util.Scanner;
 import problema1_1.Ciudad;
 import problema1_1.Enfermeros;
 import problema1_1.Hospital;
@@ -21,29 +22,57 @@ public class Ejecutor {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Medicos medc1 = new Medicos("Leonardo Aguirre", "Caridiologo", 2152);
-        Medicos medc2 = new Medicos("Marrk Valencia", "Otorrinolaringolo", 2564);
-        Medicos medc3 = new Medicos("Byron Caicedo", "Pediatra", 5412);
-        Medicos medc4 = new Medicos("Grey Anatomy", "Estetica", 3256);
+        Scanner entrada = new Scanner(System.in);
 
-        Medicos[] lista1 = {medc1, medc2, medc3, medc4};
+        System.out.println("Ingrese el nombre del Hospital ");
+        String nonmbreH = entrada.nextLine();
+        System.out.println("Ingrese el numero de Especialistas");
+        int numeroE = entrada.nextInt();
+        entrada.nextLine();
+        System.out.println("Ingrese la Direccion del Hospital");
+        String direccion = entrada.nextLine();
+        System.out.println("Ingrese el nombre de la Ciudad ");
+        String nombreC = entrada.nextLine();
+        System.out.println("Ingres el Nombre de la Provincia");
+        String provincia = entrada.nextLine();
 
-        Enfermeros enf1 = new Enfermeros("Alexander Dominguez", "Depedido", 2005);
-        Enfermeros enf2 = new Enfermeros("Cristina Ontaneda", "Contratada", 1857);
-        Enfermeros enf3 = new Enfermeros("Domenica Guarnizo", "Contratada", 2005);
-        Enfermeros enf4 = new Enfermeros("Alexander Dominguez", "Depedido", 2005);
+        Ciudad ciuda1 = new Ciudad(nombreC, provincia);
 
-        Enfermeros[] lista2 = {enf1, enf2, enf3, enf4};
+        System.out.println("Ingrese la Cantidad de Doctores a Ingresar");
+        int nD = entrada.nextInt();
+        entrada.nextLine();
+        Medicos[] lista1 = new Medicos[nD];
+        for (int i = 0; i < nD; i++) {
+            System.out.println("Ingrese el nombre del Doctor");
+            String nombre = entrada.nextLine();
+            System.out.println("Ingrese la especialidad del Doctor");
+            String especialidad = entrada.nextLine();
+            System.out.println("Ingrese el sueldo Mensual");
+            double sueldo = entrada.nextDouble();
+            entrada.nextLine();
+            Medicos medc1 = new Medicos(nombre, especialidad, sueldo);
+            lista1[i] = medc1;
+        }
+        System.out.println("Ingrese la Cantidad de Enfermeros a Ingresar");
+        int nE = entrada.nextInt();
+        entrada.nextLine();
+        Enfermeros[] listaE1 = new Enfermeros[nE];
+        for (int j = 0; j < nE; j++) {
+            System.out.println("Ingrese el nombre del Enfermero");
+            String nombre = entrada.nextLine();
+            System.out.println("Ingrese la Tipo del Enfermero");
+            String Tipo = entrada.nextLine();
+            System.out.println("Ingrese el sueldo Mensual");
+            double sueldo = entrada.nextDouble();
+            entrada.nextLine();
+            Enfermeros enfer1 = new Enfermeros(nombre, Tipo, sueldo);
+            listaE1[j] = enfer1;
+        }
 
-        Ciudad ciuda1 = new Ciudad("Loja", "Zamora");
-
-        Hospital hps1 = new Hospital("San Pedro", 20, lista1, lista2);
+        Hospital hps1 = new Hospital(nonmbreH, numeroE, lista1, listaE1, direccion);
         hps1.establecerCiudad(ciuda1);
-        hps1.establecerDireccion("24 de Mayo");
-        hps1.establecerEspecialista(14);
         hps1.CalcularTotal();
         System.out.printf("%s ", hps1);
-
     }
 
 }
